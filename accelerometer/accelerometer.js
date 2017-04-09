@@ -6,6 +6,7 @@ This basic accelerometer example logs a stream
 of x, y, and z data from the accelerometer
 *********************************************/
 
+var opn = require('opn');
 var tessel = require('tessel');
 var accel = require('accel-mma84').use(tessel.port['A']);
 
@@ -18,7 +19,21 @@ accel.on('data', function (xyz) {
     'z:', xyz[2].toFixed(2));
 
     if(xyz[0] > 0.20){
-      console.log('x is greater than 0.20');
+
+//      var opn = require('opn');
+      opn('http://www.google.com').then(function(cp) {
+        console.log('child process:',cp);
+        console.log('worked');
+      }).catch(function(err) {
+        console.error(err);
+      });
+
+      console.log('x is definitely greater than 0.20');
+
+// specify the app to open in
+      //opn('http://sindresorhus.com', {app: 'firefox'});
+
+      process.exit(1);
       setInterval(function() {
         tessel.led[1].toggle();
       }, 300);

@@ -1,2 +1,6 @@
 npm-debug.log
 .vscode
+.idea
+accelerometer/node_modules
+gps-websockets/node_modules
+led-toggle/node_modules
